@@ -50,13 +50,11 @@
 //   }
 // }
 
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../constants/app_colors.dart';
-import '../constants/app_text_styles.dart';
-import '../widgets/custom_text_field.dart';
+
+import '../../constants/app_colors.dart';
+import '../../constants/app_text_styles.dart';
 import '../widgets/custom_button.dart';
 import 'packaging_delivery_page.dart';
 
@@ -67,51 +65,64 @@ class ManageShopPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Manage Shop"),
-        backgroundColor: AppColors.primary,
-        foregroundColor: Colors.white,
+        title: const Text("MANAGE SHOP"),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header
-            Center(
-              child: Text("MANAGE SHOP", style: AppTextStyles.heading),
-            ),
-            const SizedBox(height: 20),
-
             // Shop Name
-            Text("Shop Name:", style: AppTextStyles.subtitle),
+            const Text("Shop Name:", style: AppTextStyles.subtitle),
             const SizedBox(height: 5),
-            const CustomTextField(hintText: "Hub Quality Bakers"),
+            Text("Hub Quality Bakers",
+                style: AppTextStyles.subtitle.copyWith(color: AppColors.grey)),
             const SizedBox(height: 15),
 
             // FSSAI License Number
-            Text("FSSAI License Number:", style: AppTextStyles.subtitle),
+            const Text("FSSAI License Number:", style: AppTextStyles.subtitle),
             const SizedBox(height: 5),
-            const CustomTextField(hintText: "873687DHDHJH122"),
+            Text("873687DHDHJH122",
+                style: AppTextStyles.subtitle.copyWith(color: AppColors.grey)),
             const SizedBox(height: 20),
 
             // Shop Display Photo
-            Text("Add Shop Display Photo (Max 1):", style: AppTextStyles.subtitle),
+            const Text("Add Shop Display Photo (Max 1):",
+                style: AppTextStyles.subtitle),
             const SizedBox(height: 10),
-            InkWell(
-              onTap: () {
-                // Handle Image Selection
+            CustomButton(
+              text: "Add Image",
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("Add Image")),
+                );
               },
-              child: Container(
-                width: double.infinity,
-                height: 150,
-                decoration: BoxDecoration(
-                  color: AppColors.grey.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: AppColors.grey),
-                ),
-                child: const Center(
-                  child: Icon(Icons.camera_alt, size: 40, color: Colors.grey),
-                ),
+            ),
+            const SizedBox(height: 10),
+            //a continer  60 box border 1px  redious 20 border color black 25 % and stack a relode icon primay color botm right
+            Container(
+              height: 60,
+              width: 60,
+              decoration: BoxDecoration(
+                border:
+                    Border.all(color: Colors.black.withOpacity(.25), width: 1),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Stack(
+                children: [
+                  Positioned(
+                    right: 0,
+                    bottom: 0,
+                    child: IconButton(
+                      icon: const Icon(Icons.refresh, color: AppColors.primary),
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Image reloaded!")),
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 25),
@@ -125,30 +136,20 @@ class ManageShopPage extends StatelessWidget {
             const SizedBox(height: 30),
 
             // Important Note
+            //text Note:
+            const Text("Note:", style: AppTextStyles.subtitle),
+            const SizedBox(height: 5),
+
             Container(
               padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text(
-                "⚠ Shop will not be visible to customers if you have no products added!\n"
-                "⚠ Add products at menu price to avoid items being delisted in the future!",
+              child: const Text(
+                "1. Shop will not be visible to customers if you have no products added!\n"
+                "2. Add products at menu price to avoid items being delisted in the future!",
                 style: AppTextStyles.body,
               ),
             ),
             const SizedBox(height: 20),
 
-            // Buttons
-            CustomButton(
-              text: "Save",
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Shop details saved!")),
-                );
-              },
-            ),
-            const SizedBox(height: 10),
             CustomButton(
               text: "Next",
               onPressed: () {
@@ -163,18 +164,34 @@ class ManageShopPage extends StatelessWidget {
 
   // Menu Item Widget
   Widget buildMenuItem(IconData icon, String title) {
-    return Column(
-      children: [
-        ListTile(
-          leading: Icon(icon, color: AppColors.primary),
-          title: Text(title, style: AppTextStyles.subtitle),
-          trailing: const Icon(Icons.arrow_forward_ios, size: 18),
-          onTap: () {
-            // Navigate to respective pages
-          },
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.15),
+            blurRadius: 5,
+            offset: const Offset(0, 1),
+          ),
+        ],
+      ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+        title: Center(
+          child: Text(
+            title,
+            style: AppTextStyles.subtitle.copyWith(
+              color: AppColors.primary,
+            ),
+          ),
         ),
-        const Divider(),
-      ],
+        trailing: const Icon(Icons.arrow_forward_ios, size: 18),
+        onTap: () {
+          // Navigate to respective pages
+        },
+      ),
     );
   }
 }

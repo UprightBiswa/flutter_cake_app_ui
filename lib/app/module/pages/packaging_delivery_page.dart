@@ -12,13 +12,13 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../constants/app_colors.dart';
-import '../constants/app_text_styles.dart';
+
+import '../../constants/app_text_styles.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/custom_button.dart';
+import 'vanilla_cack_page.dart';
 
 class PackagingDeliveryPage extends StatelessWidget {
   const PackagingDeliveryPage({super.key});
@@ -27,76 +27,119 @@ class PackagingDeliveryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Packaging & Delivery"),
-        backgroundColor: AppColors.primary,
-        foregroundColor: Colors.white,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: const Text("PACKAGING & DELIVERY"),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header
-            Center(
-              child: Text("PACKAGING & DELIVERY", style: AppTextStyles.heading),
-            ),
-            const SizedBox(height: 20),
-
             // Delivery Time
-            Text("Delivery Time:", style: AppTextStyles.subtitle),
+            const Text("Delivery Time:", style: AppTextStyles.subtitle),
             const SizedBox(height: 5),
-            const CustomTextField(hintText: "Enter Value"),
-            const SizedBox(height: 5),
-            Text("Minutes", style: AppTextStyles.hintText),
+            const Row(
+              children: [
+                Expanded(
+                  child: CustomTextField(hintText: "Enter Value"),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  child: CustomTextField(
+                    hintText: "Minutes",
+                  ),
+                ),
+              ],
+            ),
+
             const SizedBox(height: 20),
 
             // Delivery Radius
-            Text("Delivery Radius:", style: AppTextStyles.subtitle),
+            const Text("Delivery Radius:", style: AppTextStyles.subtitle),
             const SizedBox(height: 5),
-            const CustomTextField(hintText: "Enter Value"),
-            const SizedBox(height: 5),
-            Text("KM", style: AppTextStyles.hintText),
+            const Row(
+              children: [
+                Expanded(
+                  child: CustomTextField(hintText: "Enter Value"),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  child: CustomTextField(hintText: "KM"),
+                ),
+              ],
+            ),
+
             const SizedBox(height: 20),
 
             // Free Delivery Radius
-            Text("Free Delivery Radius:", style: AppTextStyles.subtitle),
+            const Text("Free Delivery Radius:", style: AppTextStyles.subtitle),
             const SizedBox(height: 5),
-            const CustomTextField(hintText: "Enter Value"),
-            const SizedBox(height: 5),
-            Text("KM", style: AppTextStyles.hintText),
+            const Row(
+              children: [
+                Expanded(
+                  child: CustomTextField(hintText: "Enter Value"),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  child: CustomTextField(hintText: "KM"),
+                ),
+              ],
+            ),
+
             const SizedBox(height: 20),
 
             // Packaging & Delivery Fees
-            Text("Packaging & Delivery Fees:", style: AppTextStyles.subtitle),
+            const Text("Packaging & Delivery Fees:",
+                style: AppTextStyles.subtitle),
             const SizedBox(height: 10),
 
             // Order Value Wise - OV ≥ ₹ 500
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            const Text("Order Value(OV) Wise:", style: AppTextStyles.subtitle),
+            const SizedBox(height: 5),
+            //row 2 inputer
+            const Row(
               children: [
-                Text("OV ≥ ₹ 500", style: AppTextStyles.body),
-                Text("₹ 0", style: AppTextStyles.boldText),
+                Expanded(
+                  child: CustomTextField(hintText: "OV ≥ ₹ 500"),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  child: CustomTextField(hintText: "0"),
+                ),
               ],
             ),
-            const Divider(),
             const SizedBox(height: 10),
 
             // Order Value Wise - OV < ₹ 500
-            Text("Order Value(OV) Wise:", style: AppTextStyles.subtitle),
+            const Text("Order Value(OV) Wise:", style: AppTextStyles.subtitle),
             const SizedBox(height: 5),
-            const CustomTextField(hintText: "Enter Price in ₹"),
+            //row 2 inputer
+            const Row(
+              children: [
+                Expanded(
+                  child: CustomTextField(hintText: "OV < ₹ 500"),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  child: CustomTextField(hintText: "Enter Price in ₹"),
+                ),
+              ],
+            ),
             const SizedBox(height: 20),
 
             // Important Note
+            const Text("Note:", style: AppTextStyles.subtitle),
+            const SizedBox(height: 5),
             Container(
               padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text(
-                "⚠ Minimum Value Allowed: ₹ 0\n"
-                "⚠ Maximum Value Allowed: ₹ 100",
+              child: const Text(
+                "1. Minimum Value Allowed: ₹ 0\n"
+                "2. Maximum Value Allowed: ₹ 100",
                 style: AppTextStyles.body,
               ),
             ),
@@ -105,10 +148,19 @@ class PackagingDeliveryPage extends StatelessWidget {
             // Save Button
             CustomButton(
               text: "Save",
+              radius: 20,
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Packaging & Delivery details saved!")),
+                  const SnackBar(
+                      content: Text("Packaging & Delivery details saved!")),
                 );
+              },
+            ),
+            const SizedBox(height: 20),
+            CustomButton(
+              text: "Next",
+              onPressed: () {
+                Get.to(() => const ProductManagementPage());
               },
             ),
           ],

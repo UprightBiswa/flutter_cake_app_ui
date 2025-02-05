@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import '../constants/app_colors.dart';
-import '../constants/app_text_styles.dart';
+import 'package:get/get.dart';
+
+import '../../constants/app_colors.dart';
+import '../../constants/app_text_styles.dart';
 import '../widgets/custom_button.dart';
+import 'add_product_page.dart';
 
 class ProductManagementPage extends StatelessWidget {
   const ProductManagementPage({super.key});
@@ -10,9 +13,13 @@ class ProductManagementPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Vanilla Cake"),
-        backgroundColor: AppColors.primary,
-        foregroundColor: Colors.white,
+         leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: const Text("VANILLA CAKE"),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -20,65 +27,133 @@ class ProductManagementPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Section Title
-            Text("IN STOCK:", style: AppTextStyles.heading),
+            const Text("In Stock:", style: AppTextStyles.subtitle),
             const SizedBox(height: 10),
 
             // In Stock Items List
-            _buildProductTile("Black Forest Cake", "02/07/2024", true),
-            _buildProductTile("Black Forest Cake", "02/07/2024", true),
+            _buildProductTile(
+              "Black Forest Cake",
+              "02/07/2024",
+            ),
+            _buildProductTile(
+              "Black Forest Cake",
+              "02/07/2024",
+            ),
             const SizedBox(height: 20),
 
             // Out of Stock Section
-            Text("OUT OF STOCK:", style: AppTextStyles.heading),
+            const Text("Out of Stock:", style: AppTextStyles.subtitle),
             const SizedBox(height: 10),
 
             // Out of Stock Items List
-            _buildProductTile("Black Forest Cake", "02/07/2024", false),
-            _buildProductTile("Black Forest Cake", "02/07/2024", false),
+            _buildProductTile(
+              "Black Forest Cake",
+              "02/07/2024",
+            ),
+            _buildProductTile(
+              "Black Forest Cake",
+              "02/07/2024",
+            ),
             const SizedBox(height: 30),
+          ],
+        ),
+      ),
+      //contienr top 2 conrer ner rouned shodwo show column 3 buttion 2 in one row onw in
 
-            // Add-On Items & Options
-            CustomButton(text: "Add On Items", onPressed: () {}),
-            const SizedBox(height: 10),
-            CustomButton(text: "Options", onPressed: () {}),
-            const SizedBox(height: 20),
-
-            // Add Product Button
-            Center(
-              child: CustomButton(
-                text: "Add Product",
-                onPressed: () {},
-                isPrimary: true,
-              ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.10),
+              spreadRadius: 0,
+              blurRadius: 13,
+              offset: const Offset(0, -5), // changes position of shadow
             ),
           ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: CustomButton(
+                        text: "Add On Items",
+                        radius: 20,
+                        borderColor: true,
+                        onPressed: () {}),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: CustomButton(
+                        text: "Options",
+                        radius: 20,
+                        borderColor: true,
+                        onPressed: () {}),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              CustomButton(
+                text: "Add Product",
+                radius: 20,
+                onPressed: () {
+                  Get.to(() => const AddProductPage());
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildProductTile(String name, String date, bool inStock) {
+  Widget _buildProductTile(
+    String name,
+    String date,
+  ) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(12),
+      margin: const EdgeInsets.only(bottom: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
       decoration: BoxDecoration(
-        color: inStock ? Colors.green.withOpacity(0.1) : Colors.red.withOpacity(0.1),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: inStock ? Colors.green : Colors.red),
+        border: Border.all(color: Colors.black.withOpacity(0.25)),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          //index chnge icon in lsit view 3 line horizontaly
+          const Icon(
+            Icons.drag_handle,
+            color: AppColors.grey,
+          ),
+          const SizedBox(width: 10),
+
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(name, style: AppTextStyles.subtitle),
+              Text(
+                name,
+                style: AppTextStyles.subtitle.copyWith(
+                  color: AppColors.primary,
+                ),
+              ),
               Text("Added On: $date", style: AppTextStyles.hintText),
             ],
           ),
-          Icon(
-            inStock ? Icons.check_circle : Icons.cancel,
-            color: inStock ? Colors.green : Colors.red,
+          const Spacer(),
+          const Icon(
+            Icons.more_vert,
+            color: AppColors.grey,
           ),
         ],
       ),
