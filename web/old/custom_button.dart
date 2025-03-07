@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_management/app/constants/app_colors.dart';
+import 'package:zylentrix/app/constants/app_colors.dart';
+
 
 class CustomButton extends StatelessWidget {
   final String text;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../constants/app_colors.dart';
-import '../../constants/app_text_styles.dart';
-import '../widgets/custom_button.dart';
+import '../../lib/app/constants/app_colors.dart';
+import '../../lib/app/constants/app_text_styles.dart';
+import 'custom_button.dart';
 import 'add_product_page.dart';
 
 class ProductManagementPage extends StatelessWidget {

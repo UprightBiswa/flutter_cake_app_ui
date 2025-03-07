@@ -1,16 +1,23 @@
-# shop_management
 
-A new Flutter project.
+---
 
-## Getting Started
+# **Zylentrix Management** 🚀  
 
-This project is a starting point for a Flutter application.
+A powerful **Flutter-based** application for handling business data.  
 
-A few resources to get you started if this is your first Flutter project:
+# **Final Features Implemented** ✅
+✔️ Clean UI with Card widgets
+✔️ Shimmer loading effect instead of spinner
+✔️ Pagination (infinite scroll) to load posts dynamically
+✔️ Error logging with logger
+✔️ Retry button for API failures
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 📚 **Tech Stack**  
+- **Flutter** – Cross-platform development  
+- **GetX** – State management  
+- **HTTP** – API handling  
+ 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📧 **Contact**  
+For queries or contributions, reach out to **support@zylentrix.com**  
+

@@ -1,0 +1,2 @@
+D:/tuchmath/shop_management/android/app/.cxx/Debug/v463g5r4/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/tuchmath/shop_management/android/app/.cxx/Debug/v463g5r4/armeabi-v7a/CMakeFiles/rebuild_cache.dir

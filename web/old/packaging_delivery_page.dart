@@ -15,9 +15,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../constants/app_text_styles.dart';
-import '../widgets/custom_text_field.dart';
-import '../widgets/custom_button.dart';
+import '../../lib/app/constants/app_text_styles.dart';
+import 'custom_text_field.dart';
+import 'custom_button.dart';
 import 'vanilla_cack_page.dart';
 
 class PackagingDeliveryPage extends StatelessWidget {
