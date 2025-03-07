@@ -15,8 +15,8 @@ class AppTheme {
           color: Colors.black, fontSize: 16, fontWeight: FontWeight.w400),
     ), //use google font popppins
     textTheme: GoogleFonts.poppinsTextTheme().copyWith(
-      headline6: AppTextStyles.heading,
-      bodyText1: AppTextStyles.body,
+      titleLarge: AppTextStyles.heading,
+      bodyLarge: AppTextStyles.body,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
